@@ -30,22 +30,22 @@ if prompt := st.chat_input():
     )
     run = st.session_state.client.beta.threads.runs.create(
         thread_id=st.session_state.thread.id,
-        assistant_id="asst_HoFab7RBf3Df2PgqMi7CWL9S",
-        instructions="Please address the user as Fan"
+        assistant_id = "asst_HoFab7RBf3Df2PgqMi7CWL9S",
+        instructions = "Please address the user as Fan"
     )
     while True:
         # Wait for 5 seconds
         time.sleep(5)
         # Retrieve the run status
         run_status = st.session_state.client.beta.threads.runs.retrieve(
-            thread_id=st.session_state.thread.id,
+            thread_id = st.session_state.thread.id,
             run_id=run.id
         )
 
         # If run is completed, get messages
         if run_status.status == 'completed':
             messages = st.session_state.client.beta.threads.messages.list(
-                thread_id=st.session_state.thread.id
+                thread_id = st.session_state.thread.id
             )
             # Loop through messages and print content based on role
             st.session_state.messages = messages
