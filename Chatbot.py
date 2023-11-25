@@ -23,7 +23,7 @@ if prompt := st.chat_input():
         st.stop()
     st.session_state.client = OpenAI(api_key=openai_api_key)
     st.session_state.thread = st.session_state.client.beta.threads.create()
-    message = st.session_state.client.beta.threads.messages.append(
+    message = st.session_state.client.beta.threads.messages.create(
         thread_id=st.session_state.thread.id,
         role="user",
         content=prompt
