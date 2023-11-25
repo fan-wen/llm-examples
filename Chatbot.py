@@ -47,13 +47,15 @@ if prompt := st.chat_input():
             messages = st.session_state.client.beta.threads.messages.list(
                 thread_id=st.session_state.thread.id
             )
-
             # Loop through messages and print content based on role
+            st.session_state.messages = messages
+            last_msg = messages.data[0].content
+            st.chat_message("assistant").write(msg)
             for msg in messages.data:
                 #role = msg.role
                 #content = msg.content[0].text.value
                 #st.write(f"{role.capitalize()}: {content}")
-                st.session_state.messages.append({"role": "assistant", "content": msg})
+                #st.session_state.messages.append({"role": "assistant", "content": msg})
             break
         else:
             st.write("Waiting for the Assistant to process...")
@@ -63,4 +65,4 @@ if prompt := st.chat_input():
     #response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
     #msg = response.choices[0].message.content
     #st.session_state.messages.append({"role": "assistant", "content": msg})
-    st.chat_message("assistant").write(msg)
+    #st.chat_message("assistant").write(msg)
