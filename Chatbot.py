@@ -21,7 +21,7 @@ if prompt := st.chat_input():
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
-    client = OpenAI(api_key=openai_api_key)
+    st.session_state.client = OpenAI(api_key=openai_api_key)
     st.session_state.thread = st.session_state.client.beta.threads.create()
     message = st.session_state.client.beta.threads.messages.append(
         thread_id=st.session_state.thread.id,
