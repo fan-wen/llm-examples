@@ -15,7 +15,7 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
 for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"]["text"]["value"])
+    st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input():
     if not openai_api_key:
@@ -47,6 +47,7 @@ if prompt := st.chat_input():
             messages = st.session_state.client.beta.threads.messages.list(
                 thread_id = st.session_state.thread.id
             )
+            print(messages)
             # Loop through messages and print content based on role
             st.session_state.messages = messages
             last_msg = messages.data[0].content.text.value
