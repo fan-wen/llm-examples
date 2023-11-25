@@ -49,7 +49,7 @@ if prompt := st.chat_input():
             )
             # Loop through messages and print content based on role
             st.session_state.messages = messages
-            last_msg = messages.data[0].content
+            last_msg = messages.data[0].content.text.value
             st.chat_message("assistant").write(last_msg)
             #for msg in messages.data:
                 #role = msg.role
