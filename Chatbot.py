@@ -30,7 +30,7 @@ if prompt := st.chat_input():
     )
     run = st.session_state.client.beta.threads.runs.create(
         thread_id=st.session_state.thread.id,
-        assistant_id=asst_HoFab7RBf3Df2PgqMi7CWL9S,
+        assistant_id="asst_HoFab7RBf3Df2PgqMi7CWL9S",
         instructions="Please address the user as Fan"
     )
     while True:
