@@ -1,4 +1,5 @@
 from openai import OpenAI
+import openai
 import time
 import streamlit as st
 
