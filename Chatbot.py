@@ -48,14 +48,13 @@ if prompt := st.chat_input():
                 thread_id = st.session_state.thread.id
             )
             # Loop through messages and print content based on role
-            st.session_state.messages = messages
-            #last_msg = messages.data[0].content[0].text.value
-            #st.chat_message("assistant").write(last_msg)
+            last_msg = messages.data[0].content[0].text.value
+            st.chat_message("assistant").write(last_msg)
             for msg in messages.data:
                 role = msg.role
                 content = msg.content[0].text.value
-                st.write(f"{role.capitalize()}: {content}")
-                #st.session_state.messages.append({"role": "assistant", "content": msg})
+                #st.write(f"{role.capitalize()}: {content}")
+                st.session_state.messages.append({"role": "assistant", "content": content})
             break
         else:
             st.write("Waiting for the Assistant to process...")
