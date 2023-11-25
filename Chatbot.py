@@ -51,7 +51,7 @@ if prompt := st.chat_input():
             st.session_state.messages = messages
             last_msg = messages.data[0].content
             st.chat_message("assistant").write(msg)
-            for msg in messages.data:
+            #for msg in messages.data:
                 #role = msg.role
                 #content = msg.content[0].text.value
                 #st.write(f"{role.capitalize()}: {content}")
