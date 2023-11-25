@@ -21,6 +21,8 @@ if prompt := st.chat_input():
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
     st.session_state.client = OpenAI(api_key=openai_api_key)
     st.session_state.thread = st.session_state.client.beta.threads.create()
     message = st.session_state.client.beta.threads.messages.create(
@@ -57,7 +59,7 @@ if prompt := st.chat_input():
                 st.session_state.messages.append({"role": "assistant", "content": content})
             break
         else:
-            st.write("Waiting for the Assistant to process...")
+            #st.write("Waiting for the Assistant to process...")
             time.sleep(5)
     #st.session_state.messages.append({"role": "user", "content": prompt})
     #st.chat_message("user").write(prompt)
